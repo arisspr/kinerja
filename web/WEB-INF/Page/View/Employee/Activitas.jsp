@@ -8,6 +8,8 @@
 <%@page import="javax.xml.bind.DatatypeConverter"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import ="Conection.MyConection" %>
+<!DOCTYPE html>
+
 <%
     Object id = session.getAttribute("username");
     Object bidang = session.getAttribute("bidang");
@@ -25,7 +27,6 @@
 //    Object prs = request.getParameter("id");
 //    session.setAttribute("prs", prs);
 %>
-<!DOCTYPE html>
 <html>
     <head>
         <%@include file = "../../Header/Header.jsp" %>
@@ -89,7 +90,7 @@
                                 <div class="card shadow mb-4 NH">
                                     <div class="card-header py-3">
                                         <span class="float-left"> 
-                                            <button href="" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm sh" >
+                                            <button class="d-sm-inline-block btn btn-sm btn-primary shadow-sm sh" >
                                                 <i class="fas fa-plus fa-sm text-white-50"></i> Aktifitas</button>
                                         </span>
                                         <%
