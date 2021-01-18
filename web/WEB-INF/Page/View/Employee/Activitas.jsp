@@ -349,6 +349,16 @@
                                                         <select class="form-control formq" name="satuan_waktu" id="satuan_waktu" required>
                                                             <option value="aduh">menit </option>
                                                         </select>
+<!--                                                        <select style = "border: 1px solid #d1d3e2; border-radius: .35rem;" class="selectpicker form-control formq" name="sector" data-live-search="true" required>
+                                                        <select style = "border: 1px solid #d1d3e2; border-radius: .35rem;" class="form-control formq" name="tindakan" data-live-search="true" onchange="showHideEle(this, 'supriadi', 'Tutup', '2')" required >      
+                                                        <select style = "border: 1px solid #d1d3e2; border-radius: .35rem;" class="form-control formq" name="tindakan" data-live-search="true" onchange="showHideEle(this)" required >      
+                                                            <option value="">Silahkan Pilih </option>
+                                                            <option value="1" >Sesuai Protokol Kesehatan</option>
+                                                            <option value="2" >Diberikan Teguran Tertulis Dan Perusahaan Bersedia Memenuhi 7 Hari Kedepan</option>
+                                                            <option value="Tutup">Tutup</option>
+                                                            <option value="Pindah">Pindah</option>
+                                                            <option value="Tidak Operasional">Tidak Operasional </option>
+                                                        </select>-->
                                                     </div>
                                                 </div>
                                                 <div class="form-group form-inline">
@@ -414,6 +424,20 @@
                     }
 
                 });
+            </script>
+             <script>
+//                $('.sh').css('display', 'none');
+//                function showHideEle(selectSrc, targetEleId, triggerValue) {	
+////                        if(selectSrc.value===triggerValue) {
+//                        if(selectSrc.value===triggerValue) {
+//                            alert (selectSrc.value);
+////                                document.getElementById(targetEleId).style.display = "inline-block";
+//                                document.getElementById(targetEleId).removeAttribute("style");
+//                        } else {
+//                            alert (selectSrc.value);
+//                                document.getElementById(targetEleId).style.display = "none";
+//                        }
+//                } 
             </script>
     </body>
 </html>
