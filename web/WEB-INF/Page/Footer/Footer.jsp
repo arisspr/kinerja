@@ -81,24 +81,34 @@
         $("#warning-aktivitas").hide();
         $('#cuti-group').hide();
         $("#cuti-info").hide();
-        const last = <%out.print(lt);%>;
+        //const last = <%out.print(lt);%>;
+        const last = 5;
         console.log(last);
         $(document).on('change keydown paste input', '#tanggal', function () {
             var today = new Date();
+            console.log(today);
             var lst_today = new Date();
             lst_today.setDate(lst_today.getDate() - last);
             var date_input = new Date($(this).val());
+            console.log(date_input);
 //        var date_month_fix = date_input.getMonth();
 //        var date_input_fix = date_input.getFullYear();
 //        var month_before = today.getFullYear() - 1;
             if (date_input > today) {
-                $("#btn-submit").hide();
+                /*$("#btn-submit").hide();
                 $("#peringatan-tanggal").show();
                 $("#peringatan-tanggal2").hide();
                 $("#cuti-group").hide();
                 $("#cuti-info").hide();
                 $("#aktivitas-warning").hide();
-                $("#aris").hide();
+                $("#aris").hide();*/
+             $("#btn-submit").show();
+                $("#cuti-group").show();
+                $("#aris").show();
+                $("#peringatan-tanggal").hide();
+                $("#peringatan-tanggal2").hide();
+                $("#cuti-info").hide();
+                $("#aktivitas-warning").hide();
             } else if (date_input < lst_today) {
                 $("#btn-submit").hide();
                 $("#peringatan-tanggal2").show();

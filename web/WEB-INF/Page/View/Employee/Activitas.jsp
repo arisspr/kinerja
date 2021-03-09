@@ -193,7 +193,7 @@
                                                 <label class="col-lg-4 control-label">Tanggal : </label>
                                                 <div class="col-lg-12">
                                                     <div >
-                                                        <input type="text" id="tanggal" class="form-control datepicker formq" name="tanggal" autocomplete="off" required readonly='readonly'>
+                                                        <input type="text" id="tanggal" class="form-control datepicker formq" name="tanggal" autocomplete="off" required >
                                                         <span class="input-group-addon" data-popup="tooltip" title="Anda hanya bisa mengisi Aktivitas hari ini dan hari- hari sebelum tanggal hari ini"> <i class="icon-question3"> </i> </span>
                                                     </div>
                                                 </div>
