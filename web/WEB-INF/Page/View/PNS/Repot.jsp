@@ -4,6 +4,7 @@
     Author     : aris
 --%>
 
+<%@page import="java.util.Calendar"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="javax.xml.bind.DatatypeConverter"%>
@@ -138,6 +139,14 @@ String urlLoc = "report";
                                     </div>-->
                                     <div class="card-body">                                        
                                         <%
+                                            Calendar now = Calendar.getInstance();
+                                                int year = now.get(Calendar.YEAR);
+                                                int month = now.get(Calendar.MONTH) + 1; // Note: zero based!
+                                                int day = now.get(Calendar.DAY_OF_MONTH);
+                                                int hour = now.get(Calendar.HOUR_OF_DAY);
+                                                int minute = now.get(Calendar.MINUTE);
+                                                int millis = now.get(Calendar.MILLISECOND);
+                                                int second = now.get(Calendar.SECOND);
                                             boolean ss = Boolean.parseBoolean(request.getParameter("ss"));
                                            System.err.println("ss "+ss);
                                             if (ss){
@@ -154,7 +163,8 @@ String urlLoc = "report";
                                                         + "Join master.kegiatan as k on a.tugas = k.kode "
                                                         + "Join master.tupoksi as t on a.kegiatan = t.kode "
 //                                                        + "WHERE a.nip = '" + id + "' and nik_employee ='"+first+"' and EXTRACT(MONTH FROM a.tanggal_aktivitas) ='"+last+"' group by a.aktivitas, "
-                                                        + "WHERE a.nik_employee ='"+first+"' and a.approve = 'Disetujui' and EXTRACT(MONTH FROM a.tanggal_aktivitas) ='"+last+"' group by a.aktivitas, "
+//                                                        + "WHERE a.nik_employee ='"+first+"' and a.approve = 'Disetujui' and EXTRACT(MONTH FROM a.tanggal_aktivitas) ='"+last+"' group by a.aktivitas, "
+                                                        + "WHERE a.nik_employee ='"+first+"' and a.approve = 'Disetujui' and EXTRACT(MONTH FROM a.tanggal_aktivitas) ='"+last+"' and EXTRACT(Year FROM a.tanggal_aktivitas) ='"+year+"' group by a.aktivitas, "
                                                         + "a.tanggal_aktivitas, a.note, a.durasi, a.approve, a.detail, a.nip, a.berkas_pendukung, t.nama_aktifitas, k.nama_aktifitas, b.nama, k.kode , t.kode";
                                                 ResultSet report = com1.executeQuery(Report);
                                                 System.out.println("Activitas Report " + Report);                                                
@@ -168,7 +178,7 @@ String urlLoc = "report";
                                                         <th>Target</th>
                                                         <th>Disetujui</th>
                                                         <th>Belum Disetujui</th>
-                                                        <th>Capaian</th>                                                        
+                                                        <th>Capaian ss</th>                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody>  

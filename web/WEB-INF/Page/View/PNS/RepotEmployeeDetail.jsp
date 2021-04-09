@@ -4,6 +4,7 @@
     Author     : aris
 --%>
 
+<%@page import="java.util.Calendar"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="javax.xml.bind.DatatypeConverter"%>
@@ -145,6 +146,13 @@ if (id == null || id.toString().trim().equals("") || level == null || level.toSt
                             <div class="card mb-3">                                
                                 <div class="card-body">                                        
                                     <%
+                                        Calendar now = Calendar.getInstance();
+                                                int year = now.get(Calendar.YEAR);
+                                                int month = now.get(Calendar.MONTH) + 1; // Note: zero based!
+                                                int day = now.get(Calendar.DAY_OF_MONTH);
+                                                int hour = now.get(Calendar.HOUR_OF_DAY);
+                                                int minute = now.get(Calendar.MINUTE);
+                                                int millis = now.get(Calendar.MILLISECOND);
                                         boolean ss = Boolean.parseBoolean(request.getParameter("ss"));
                                         String wherecond1 = "";
                                         System.err.println("ss " + ss);
@@ -160,8 +168,8 @@ if (id == null || id.toString().trim().equals("") || level == null || level.toSt
                                             System.out.println("last " + last);
 
                                             Statement com1 = conn1.createStatement();
-                                            String Report = "Select a.nik, a.nama, sum(b.durasi) as counter, sum (b.durasi) filter (where b.approve = 'Disetujui' and EXTRACT(MONTH FROM b.tanggal_aktivitas) ='" + last + "') as approve, "
-                                                    + "sum(b.durasi) filter (where b.approve = 'Belum Disetujui' and EXTRACT(MONTH FROM b.tanggal_aktivitas) ='" + last + "') as notapprove "
+                                            String Report = "Select a.nik, a.nama, sum(b.durasi) as counter, sum (b.durasi) filter (where b.approve = 'Disetujui' and EXTRACT(MONTH FROM b.tanggal_aktivitas) ='" + last + "' and EXTRACT(Year FROM b.tanggal_aktivitas) ='" + year + "') as approve, "
+                                                    + "sum(b.durasi) filter (where b.approve = 'Belum Disetujui' and EXTRACT(MONTH FROM b.tanggal_aktivitas) ='" + last + "' and EXTRACT(Year FROM b.tanggal_aktivitas) ='" + year + "') as notapprove "
                                                     + " from employee.biodata as a "
                                                     + "left Join  employee.aktivitas as b on b.nik_employee = a.nik "
                                                     + "left Join master.bidang as bd on bd.id = a.bidang "
@@ -184,7 +192,7 @@ if (id == null || id.toString().trim().equals("") || level == null || level.toSt
                                                     <th>Disetujui</th>
                                                     <th>Belum Disetujui</th>
                                                     <th>Capaian</th>                                                        
-                                                    <th>Aksi</th>                                                        
+                                                    <th>Aksi pp</th>                                                        
                                                 </tr>
                                             </thead>
                                             <%  if (first.length() > 1) { %>

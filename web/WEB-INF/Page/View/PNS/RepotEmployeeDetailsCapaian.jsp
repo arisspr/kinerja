@@ -4,6 +4,7 @@
     Author     : aris
 --%>
 
+<%@page import="java.util.Calendar"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="javax.xml.bind.DatatypeConverter"%>
@@ -87,12 +88,20 @@ String urlLoc = "report";
                                     </div>-->
                                                                         
                                         <%  
+                                            Calendar now = Calendar.getInstance();
+                                                int year = now.get(Calendar.YEAR);
+                                                int day = now.get(Calendar.DAY_OF_MONTH);
+                                                int hour = now.get(Calendar.HOUR_OF_DAY);
+                                                int minute = now.get(Calendar.MINUTE);
+                                                int millis = now.get(Calendar.MILLISECOND);
+                                                
                                             String Report = "Select a.aktivitas, a.tanggal_aktivitas, a.note, a.durasi, a.approve, a.detail, a.berkas_pendukung, t.nama_aktifitas as tupoksi, k.nama_aktifitas as kegiatan, "
                                                         + "b.nama from employee.aktivitas as a "
                                                         + "Join employee.biodata as b on a.nip = b.nik "
                                                         + "Join master.kegiatan as k on a.tugas = k.kode "
                                                         + "Join master.tupoksi as t on a.kegiatan = t.kode "
-                                                        + "WHERE a.nik_employee = '" + nik1 + "' and EXTRACT(MONTH FROM a.tanggal_aktivitas) ='" + month + "' order by a.approve ='Belum Disetujui' desc, a.tgl_input asc";
+                                                        + "WHERE a.nik_employee = '" + nik1 + "' and EXTRACT(MONTH FROM a.tanggal_aktivitas) ='" + month + "' and EXTRACT(Year FROM a.tanggal_aktivitas) ='" + year + "' "
+                                                        + "order by a.approve ='Belum Disetujui' desc, a.tgl_input asc";
                                                 ResultSet report = com1.executeQuery(Report);
                                                 System.out.println("Activitas Report " + Report);                                              
                                         %>

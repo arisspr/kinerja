@@ -4,6 +4,7 @@
     Author     : aris
 --%>
 
+<%@page import="java.util.Calendar"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="javax.xml.bind.DatatypeConverter"%>
@@ -170,7 +171,7 @@ String urlLoc = "report";
                                                         <th>Target</th>
                                                         <th>Disetujui</th>
                                                         <th>Belum Disetujui</th>
-                                                        <th>Capaian</th>                                                        
+                                                        <th>Capaian gggggg</th>                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody>  
@@ -312,10 +313,11 @@ String urlLoc = "report";
                                                         </td>
                                                         <td>
                                                             <% 
-                                                                
+                                                                Calendar now = Calendar.getInstance();
+                                                                    int year = now.get(Calendar.YEAR);
                                                                 Statement con1 = conn1.createStatement();
                                                                 String approved = "select sum(durasi) as tot_app from employee.aktivitas where nik_employee = '"+nik_emp+"' and "
-                                                                        + "approve = 'Disetujui' and EXTRACT(MONTH FROM tanggal_aktivitas) ='"+last+"'";
+                                                                        + "approve = 'Disetujui' and EXTRACT(MONTH FROM tanggal_aktivitas) ='"+last+"' and EXTRACT(Year FROM tanggal_aktivitas) ='"+year+"'";
                                                                 ResultSet approved1 = con1.executeQuery(approved);
                                                                 while (approved1.next()) {
                                                                     dur = approved1.getInt("tot_app");
@@ -335,7 +337,7 @@ String urlLoc = "report";
                                                             <%
                                                               Statement con2 = conn1.createStatement();
                                                               String notapproved = "select sum(durasi) as tot_app from employee.aktivitas where nik_employee = '"+nik_emp+"' and "
-                                                                        + "approve = 'Belum Disetujui' and EXTRACT(MONTH FROM tanggal_aktivitas) ='"+last+"'";
+                                                                        + "approve = 'Belum Disetujui' and EXTRACT(MONTH FROM tanggal_aktivitas) ='"+last+"' and EXTRACT(Year FROM tanggal_aktivitas) ='"+year+"'";
                                                               ResultSet notapproved1 = con2.executeQuery(notapproved);
                                                                 while (notapproved1.next()) {
                                                                     dur2 = notapproved1.getString("tot_app");
