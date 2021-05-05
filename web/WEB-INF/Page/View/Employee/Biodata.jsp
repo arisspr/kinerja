@@ -299,4 +299,6 @@ if (id == null || id.toString().trim().equals("") || level == null || level.toSt
     </body>
 </html>
 
-<% } %>
+<% if (conn1 != null) {
+        conn1.close();
+    }} %>

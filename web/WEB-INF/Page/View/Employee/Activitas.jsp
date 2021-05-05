@@ -22,6 +22,8 @@
 } else {
 //    Object prs = request.getParameter("id");
 //    session.setAttribute("prs", prs);
+MyConection conn2 = new MyConection();
+Connection conn1 = conn2.getKoneksi();
 %>
 <!DOCTYPE html>
 <html>
@@ -113,9 +115,7 @@
                                                 </thead>
                                                 <tbody id="show_data">
                                                     <%
-                                                        int no = 1;
-                                                        MyConection conn = new MyConection();
-                                                        Connection conn1 = conn.getKoneksi();
+                                                        int no = 1;                                                        
                                                         Statement com1 = conn1.createStatement();
                                                         String Activitas = "Select a.aktivitas, a.tanggal_aktivitas, a.note, a.durasi, a.approve, a.detail, t.nama_aktifitas as tupoksi, k.nama_aktifitas as kegiatan, "
                                                                 + "b.nama from employee.aktivitas as a "
@@ -380,4 +380,8 @@
             </script>
     </body>
 </html>
-<% }%>
+<% if (conn1 != null) {
+        conn1.close();
+    }
+}
+%>

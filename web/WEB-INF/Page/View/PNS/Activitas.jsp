@@ -21,6 +21,9 @@
 } else {
 //    Object prs = request.getParameter("id");
 //    session.setAttribute("prs", prs);
+MyConection conn3 = new MyConection();
+Connection conn1 = conn3.getKoneksi();
+
 %>
 <!DOCTYPE html>
 <html>
@@ -102,9 +105,8 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="show_data">
-                                                    <%                                                        int no = 1;
-                                                        MyConection conn = new MyConection();
-                                                        Connection conn1 = conn.getKoneksi();
+                                                    <%                                                        
+                                                        int no = 1;                                                        
                                                         Statement com1 = conn1.createStatement();
                                                         String id_kasie = "SELECT id_kasie FROM master.kasie where nip = '" + id + "'";
                                                         ResultSet ksie = com1.executeQuery(id_kasie);
@@ -180,6 +182,9 @@
                                                     <%
                                                             no++;
                                                         }
+                                                if (conn1 != null) {
+                                                conn1.close();
+                                                }
                                                     %>
                                                 </tbody>
                                             </table>
@@ -246,7 +251,7 @@
                                             Disetujui
                                             <input type="hidden" name="verificator" value="finish">
                                             <% } else {
-                                                if (jabatan.equals("12")) {%>
+                                                if (jabatan.equals("12")) { %>
                                             Kasie
                                             <input type="hidden" name="verificator" value="kasie">
                                             <% } else if (jabatan.equals("10")) {
@@ -282,7 +287,16 @@
             </div>
             <!-- end form -->
             <!--end Form Add-->
-            <% }%>
+            <% 
+                if (conn1 != null) {
+                        conn1.close();
+                    }
+
+                  }
+            %>
     </body>
 </html>
-<% }%>
+<%
+    }
+    %>
+

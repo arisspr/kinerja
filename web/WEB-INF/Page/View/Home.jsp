@@ -557,4 +557,6 @@
             </div>
     </body>
 </html>
-<% }%>
+<% if (conn1 != null) {
+        conn1.close();
+    }}%>

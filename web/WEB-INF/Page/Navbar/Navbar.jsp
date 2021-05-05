@@ -139,4 +139,6 @@
     </nav>
     <%-- End of Topbar --%>
 </html>
-<% } %>
+<% if (conn != null) {
+        conn.close();
+    }} %>
